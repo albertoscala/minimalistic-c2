@@ -9,7 +9,7 @@ def test_command(client_socket):
     cmd = input("Enter command: ")
 
     # send the command to the client 
-    client_socket.send(cmd.encode())
+    client_socket.send(cmd.strip().encode())
 
     # receive the output from the client
     output = client_socket.recv(1024).decode()
