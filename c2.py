@@ -42,6 +42,16 @@ def tcp_server():
 class HTTPServerStructure(BaseHTTPRequestHandler):
     def do_GET(self):
         match self.path:
+            case "/":
+                self.send_response(200)
+                self.send_header("Content-type", "text/html")
+                self.end_headers()
+                
+                # read the html file
+                with open("c2-gui/dist/index.html", "r") as f:
+                    html = f.read()
+
+                self.wfile.write(html.encode())
             case "/clients":
                 self.send_response(200)
                 self.send_header("Content-type", "application/json")
