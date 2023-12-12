@@ -36,7 +36,9 @@ def tcp_server():
         client_socket, addr = server_socket.accept()
 
         # add client socket to dictionary
-        clients_socket[addr] = client_socket
+        clients_socket[str(addr[0])+":"+str(addr[1])] = client_socket
+
+        print(str(client_socket))
 
 
 # class that models the http server
@@ -48,8 +50,8 @@ class HTTPServerStructure(BaseHTTPRequestHandler):
                 self.send_header("Content-type", "application/json")
                 self.end_headers()
 
-                # transform the dictionary to json
-                clients_json = json.dumps(clients_socket)
+                # transform the list of the dictionary keys to json
+                clients_json = json.dumps(list(clients_socket.keys()))
 
                 print(clients_json)
 
