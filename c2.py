@@ -5,7 +5,7 @@ import json
 
 HOST = "localhost"
 PORT_TCP = 8888
-PORT_HTTP = 8880
+PORT_HTTP_SERVER = 8880
 
 clients_socket = dict()
 
@@ -35,10 +35,11 @@ def tcp_server():
         # accept connection
         client_socket, addr = server_socket.accept()
 
-        # add client socket to dictionary
-        clients_socket[str(addr[0])+":"+str(addr[1])] = client_socket
+        # get the client full address
+        ip_addr = str(addr[0]) + ':' + str(addr[1])
 
-        print(str(client_socket))
+        # add client socket to dictionary
+        clients_socket[ip_addr] = client_socket
 
 
 # class that models the http server
@@ -53,14 +54,12 @@ class HTTPServerStructure(BaseHTTPRequestHandler):
                 # transform the list of the dictionary keys to json
                 clients_json = json.dumps(list(clients_socket.keys()))
 
-                print(clients_json)
-
                 # send the json to the client
                 self.wfile.write(clients_json.encode())
 
 
 def http_server():
-    server = HTTPServer((HOST, PORT_HTTP), HTTPServerStructure)
+    server = HTTPServer((HOST, PORT_HTTP_SERVER), HTTPServerStructure)
     server.serve_forever()
 
 
