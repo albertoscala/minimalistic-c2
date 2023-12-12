@@ -4,7 +4,7 @@ import threading
 
 HOST = "localhost"
 PORT_TCP = 8888
-PORT_HTTP = 8080
+PORT_HTTP = 8880
 
 clients_socket = dict()
 
