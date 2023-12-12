@@ -1,6 +1,7 @@
 import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading
+import json
 
 HOST = "localhost"
 PORT_TCP = 8888
@@ -42,21 +43,18 @@ def tcp_server():
 class HTTPServerStructure(BaseHTTPRequestHandler):
     def do_GET(self):
         match self.path:
-            case "/":
-                self.send_response(200)
-                self.send_header("Content-type", "text/html")
-                self.end_headers()
-                
-                # read the html file
-                with open("c2-gui/dist/index.html", "r") as f:
-                    html = f.read()
-
-                self.wfile.write(html.encode())
             case "/clients":
                 self.send_response(200)
                 self.send_header("Content-type", "application/json")
                 self.end_headers()
-                self.wfile.write("Test".encode())
+
+                # transform the dictionary to json
+                clients_json = json.dumps(clients_socket)
+
+                print(clients_json)
+
+                # send the json to the client
+                self.wfile.write(clients_json.encode())
 
 
 def http_server():

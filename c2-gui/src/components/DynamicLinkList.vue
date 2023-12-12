@@ -24,7 +24,7 @@ export default {
         async fetchLinks() {
             try {
                 // Make an API request using Axios
-                const response = await this.$axios.get('https://api.example.com/your-endpoint');
+                const response = await this.$axios.get('http://localhost:8880/clients');
                 // Assuming the API response is an array of link objects with 'title' and 'url' properties
                 this.links = response.data;
             } catch (error) {
