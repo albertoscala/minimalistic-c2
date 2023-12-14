@@ -33,12 +33,32 @@
                     <label for="input">Input:</label>
                     <input type="text" class="form-control" id="input">
                 </div>
-                <button type="button" class="btn btn-primary">Send</button>
+                <button type="button" class="btn btn-primary" id="sendInput">Send</button>
             </div>
         </div>
     </div>
 
-    
+    <script>
+        document.getElementById("sendInput").addEventListener("click", function() {
+            // URL to which the POST request will be sent
+            var url = "/your-post-endpoint";
+        
+            // get the data from the input tag with id "input"
+            var data = document.getElementById("input").value;
+        
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "text/plain" // Adjust the content type based on your requirements
+                },
+                body: data
+            })
+            .then(function(response) {
+                // print it in the console
+                console.log(response);
+            })
+        });
+        </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

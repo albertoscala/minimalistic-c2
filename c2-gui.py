@@ -20,11 +20,11 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
             # read the top html file
-            with open("hp-top.html", "r") as f:
+            with open("homepage/hp-top.html", "r") as f:
                 tp_html = f.read()
 
             # read the bottom html file
-            with open("hp-bttm.html", "r") as f:
+            with open("homepage/hp-bttm.html", "r") as f:
                 bt_html = f.read()
             
             # make get http request to the server to get the clients list
@@ -33,7 +33,7 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             # create the html elements for the clients list
             clients_html = ""
             for client in clients:
-                clients_html += f'<li class="list-group-item"><a href="#">{client}</a></li>'
+                clients_html += f'<li class="list-group-item"><a href="/{client}">{client}</a></li>'
 
             # join all the html file parts
             html = tp_html + clients_html + bt_html
