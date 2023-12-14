@@ -1,0 +1,27 @@
+";
+
+    // get the data from the input tag with id "input"
+    var data = document.getElementById("input").value;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain"
+        },
+        body: data,
+        mode: 'cors',
+    })
+    .then(response => response.text())
+    .then(data => {
+        // print it in the textarea tag with id "output"
+        document.getElementById('output').value = data;
+    })
+});
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

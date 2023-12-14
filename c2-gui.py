@@ -47,16 +47,24 @@ class MyRequestHandler(BaseHTTPRequestHandler):
 
             # read the top html file
             with open("console/part1.html", "r") as f:
-                tp_html = f.read()
+                part1_html = f.read()
 
             # read the bottom html file
             with open("console/part2.html", "r") as f:
-                bt_html = f.read()
+                part2_html = f.read()
             
+            # read the bottom html file
+            with open("console/part3.html", "r") as f:
+                part3_html = f.read()
+
+            # read the bottom html file
+            with open("console/part4.html", "r") as f:
+                part4_html = f.read()
+
             socket_id = self.path[1:]
             
             # join all the html file parts
-            html = tp_html + socket_id + bt_html
+            html = part1_html + socket_id + part2_html + socket_id + part3_html + socket_id + part4_html
 
             # send the html file to the client
             self.wfile.write(html.encode())
