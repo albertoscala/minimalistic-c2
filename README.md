@@ -28,6 +28,31 @@ Stripped down to essential functionalities, this minimalistic C2 server provides
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/albertoscala/Minimalistic-C2.git
-   cd cc-server
+   cd Minimalistic-C2
    ```
-   
+2. **Install Dependencies:**
+   ```bash
+   # Python dependencies
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+1. **Run the startup script:**
+    ```bash
+    ./startup.ps1
+    ```
+
+2. **Compile and Run the Beacon:**
+    ```bash
+    go build target.go
+    ./target
+    ```
+
+## Contributing
+
+Feel free to contribute by opening issues or submitting pull requests.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
