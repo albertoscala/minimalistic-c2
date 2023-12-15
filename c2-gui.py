@@ -19,24 +19,30 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
 
+            # read the html file
+            with open("homepage/homepage.html", "r") as f:
+                html = f.read()
+
+            # keeping it because you never know
+
             # read the top html file
-            with open("homepage/hp-top.html", "r") as f:
-                tp_html = f.read()
+            #with open("homepage/hp-top.html", "r") as f:
+            #    tp_html = f.read()
 
             # read the bottom html file
-            with open("homepage/hp-bttm.html", "r") as f:
-                bt_html = f.read()
+            #with open("homepage/hp-bttm.html", "r") as f:
+            #    bt_html = f.read()
             
             # make get http request to the server to get the clients list
-            clients = requests.get("http://localhost:8880/clients").json()
+            #clients = requests.get("http://localhost:8880/clients").json()
 
             # create the html elements for the clients list
-            clients_html = ""
-            for client in clients:
-                clients_html += f'<li class="list-group-item"><a href="/{client}">{client}</a></li>'
+            #clients_html = ""
+            #for client in clients:
+            #    clients_html += f'<li class="list-group-item"><a href="/{client}">{client}</a></li>'
 
             # join all the html file parts
-            html = tp_html + clients_html + bt_html
+            #html = tp_html + clients_html + bt_html
 
             # send the html file to the client
             self.wfile.write(html.encode())

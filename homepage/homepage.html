@@ -21,13 +21,52 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <ul class="list-group">
+                <ul class="list-group" id="clients-list">
 
 
                 </ul>
             </div>
         </div>
     </div>
+
+    <script>
+
+        // URL to which the GET request will be sent
+        var url = "http://localhost:8880/clients";        
+
+        // Get the clients list element
+        var clientsList = document.getElementById('clients-list');
+
+        // Send a get request to the server using fetch api
+        fetch(url, {
+                method: "GET",
+                mode: "cors" 
+            })
+            .then(function(response) {
+                // Convert the response data to JSON
+                return response.json();
+            })
+            .then(function(clients) {
+                // Iterate over the clients list and add each client to the list group
+                clients.forEach(function(client) {
+                    // Create a list item
+                    var clientItem = document.createElement('li');
+                    clientItem.classList.add('list-group-item');
+
+                    // Create a link element and set the href attribute to the client's url
+                    var clientLink = document.createElement('a');
+                    clientLink.setAttribute('href', "/" + client);
+                    clientLink.innerText = client;
+                    
+                    // Append the link to the list item
+                    clientItem.appendChild(clientLink);
+
+                    // Append the list item to the list group
+                    clientsList.appendChild(clientItem);
+                });
+            });
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

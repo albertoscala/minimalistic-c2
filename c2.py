@@ -75,6 +75,7 @@ class HTTPServerStructure(BaseHTTPRequestHandler):
         if self.path == "/clients":
             self.send_response(200)
             self.send_header("Content-type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
 
             # transform the list of the dictionary keys to json
