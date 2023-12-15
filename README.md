@@ -18,3 +18,16 @@ Stripped down to essential functionalities, this minimalistic C2 server provides
     - **Autonomous Functionality:**
         - Enable autonomous functionality in the Go beacon for discrete operations without compromising the system.
 
+## Prerequisites
+
+- Python 3.x
+- Go 1.x
+
+## Setup
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/albertoscala/Minimalistic-C2.git
+   cd cc-server
+   ```
+   
